@@ -5,7 +5,7 @@ package snjdck.tesla.modules.login
 	import flash.viewport.IViewPortLayer;
 	import flash.viewport.ViewPortLayerName;
 	
-	import snjdck.tesla.modules.login.ui.LoginPane;
+	import snjdck.tesla.modules.login.ui.LoginPanel;
 	import snjdck.tesla.modules.login.v.LoginPaneMediator;
 	
 	public class LoginModule extends Module
@@ -32,7 +32,7 @@ package snjdck.tesla.modules.login
 		
 		override public function initAllViews():void
 		{
-			mapView(LoginPane, LoginPaneMediator);
+			mapView(LoginPanel, LoginPaneMediator);
 		}
 		
 		override public function onStartup():void

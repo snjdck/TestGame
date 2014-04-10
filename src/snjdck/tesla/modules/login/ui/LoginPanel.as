@@ -1,7 +1,9 @@
 package snjdck.tesla.modules.login.ui
 {
 	import org.aswing.AsWingConstants;
+	import org.aswing.Container;
 	import org.aswing.JButton;
+	import org.aswing.JFrame;
 	import org.aswing.JLabel;
 	import org.aswing.JPanel;
 	import org.aswing.JTextField;
@@ -9,7 +11,7 @@ package snjdck.tesla.modules.login.ui
 	import org.aswing.geom.IntDimension;
 	import org.aswing.geom.IntPoint;
 
-	public class LoginPane extends JPanel
+	public class LoginPanel extends JFrame
 	{
 		private var panel8:JPanel;
 		private var label9:JLabel;
@@ -21,11 +23,16 @@ package snjdck.tesla.modules.login.ui
 		private var loginButton:JButton;
 		private var registerButton:JButton;
 		
-		public function LoginPane()
+		public function LoginPanel()
 		{
-			setSize(new IntDimension(400, 400));
+			super(null, "登陆");
+			setResizable(false);
+			setClosable(false);
 			
-			setLayout(new SoftBoxLayout(AsWingConstants.VERTICAL));
+			var contentPane:Container = getContentPane();
+			
+			contentPane.setSize(new IntDimension(400, 400));
+			contentPane.setLayout(new SoftBoxLayout(AsWingConstants.VERTICAL));
 			
 			panel8 = new JPanel();
 			panel8.setSize(new IntDimension(400, 10));
@@ -68,9 +75,9 @@ package snjdck.tesla.modules.login.ui
 			registerButton.setSize(new IntDimension(33, 22));
 			registerButton.setText("注册");
 			
-			append(panel8);
-			append(panel11);
-			append(panel14);
+			contentPane.append(panel8);
+			contentPane.append(panel11);
+			contentPane.append(panel14);
 			
 			panel8.append(label9);
 			panel8.append(idText);

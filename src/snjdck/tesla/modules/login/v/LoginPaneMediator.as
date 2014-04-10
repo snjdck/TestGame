@@ -8,7 +8,7 @@ package snjdck.tesla.modules.login.v
 	import org.aswing.event.AWEvent;
 	
 	import snjdck.tesla.modules.login.LoginMsg;
-	import snjdck.tesla.modules.login.ui.LoginPane;
+	import snjdck.tesla.modules.login.ui.LoginPanel;
 	import snjdck.tesla.services.IMainService;
 	
 	public class LoginPaneMediator extends Mediator
@@ -16,32 +16,27 @@ package snjdck.tesla.modules.login.v
 		[Inject]
 		public var mainService:IMainService;
 		
-		private var _loginPane:LoginPane;
-		private var _frame:JFrame;
+		private var _loginPanel:LoginPanel;
 		
-		public function LoginPaneMediator(viewComponent:LoginPane)
+		public function LoginPaneMediator(viewComponent:LoginPanel)
 		{
 			super(viewComponent);
-			_loginPane = viewComponent;
-			
-			_frame = new JFrame(null, "LoginPane");
-			_frame.setResizable(false);
-			_frame.setContentPane(_loginPane);
-			_frame.pack();
+			_loginPanel = viewComponent;
+			_loginPanel.pack();
 		}
 		
 		override protected function onReg():void
 		{
 			addMsgHandler(LoginMsg.SHOW_LOGIN_PANE, __onShowPane);
 			
-			addEvtHandler(_frame.getTitleBar().getCloseButton(), AWEvent.ACT, __onClose);
-			addEvtHandler(_loginPane.getLoginButton(), AWEvent.ACT, __onLogin);
+			addEvtHandler(_loginPanel.getTitleBar().getCloseButton(), AWEvent.ACT, __onClose);
+			addEvtHandler(_loginPanel.getLoginButton(), AWEvent.ACT, __onLogin);
 		}
 		
 		private function __onLogin(evt:AWEvent):void
 		{
 			mainService.show();
-			_frame.hide();
+			_loginPanel.hide();
 		}
 		
 		private function __onClose(evt:AWEvent):void
@@ -51,8 +46,8 @@ package snjdck.tesla.modules.login.v
 		
 		private function __onShowPane():void
 		{
-			AsWingUtils.centerLocate(_frame);
-			_frame.show();
+			AsWingUtils.centerLocate(_loginPanel);
+			_loginPanel.show();
 		}
 		
 		override protected function onDel():void
